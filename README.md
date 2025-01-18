@@ -4,18 +4,16 @@ Ce projet contient les 3 TPs du cours **"La sécurité des stratégies d'authent
 
 # Sommaire
 
-[🛠️ Mise en place du projet](#-mise-en-place-du-projet)
-[1. Forker le projet](#1-forker-le-projet)
-[2. Installer les dépendances](#2-installer-les-dépendances)
-[3. Démarrer le projet](#3-démarrer-le-projet)
-[4. Création de la base de données](#4-création-de-la-base-de-données)
-[5. Configurer le fichier .env](#5-configurer-le-fichier-env)
-[6. Créer votre première migration Prisma](#6-créer-votre-première-migration-prisma)
-[7. Lancer Prisma Studio](#7-lancer-prisma-studio)
-[📄 TPs](#-tps)
-[📚 Ressources](#-ressources)
-
----
+[🛠️ Mise en place du projet](#-mise-en-place-du-projet)  
+[1. Forker le projet](#1-forker-le-projet)  
+[2. Installer les dépendances](#2-installer-les-dépendances)  
+[3. Démarrer le projet](#3-démarrer-le-projet)  
+[4. Création de la base de données](#4-création-de-la-base-de-données)  
+[5. Configurer le fichier .env](#5-configurer-le-fichier-env)  
+[6. Créer votre première migration Prisma](#6-créer-votre-première-migration-prisma)  
+[7. Lancer Prisma Studio](#7-lancer-prisma-studio)  
+[📄 TPs](#-tps)  
+[📚 Ressources](#-ressources)  
 
 ## 🛠️ Mise en place du projet
 
@@ -121,18 +119,14 @@ Pour explorer et modifier votre base de données en local, démarrez Prisma Stud
 npx prisma studio
 ```
 
----
-
 # 📄 TPs
 
 Les énoncés des TPs sont directement disponibles dans ce projet. Chaque TP peut être réalisé de manière indépendante en recommençant le projet depuis zéro, ou bien en combinant les différents TPs.
 
----
-
 # 📚 Ressources
 
-[Prisma Documentation](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/nextjs-help)
-[Next.js Documentation](https://nextjs.org/docs)
-[NextAuth.js Documentation](https://next-auth.js.org/providers/)
+[Prisma Documentation](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/nextjs-help)  
+[Next.js Documentation](https://nextjs.org/docs)  
+[NextAuth.js Documentation](https://next-auth.js.org/providers/)  
 
 # 🚀 Bon courage !
