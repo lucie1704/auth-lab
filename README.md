@@ -7,7 +7,7 @@ Ce projet contient les 3 TPs du cours **"La sécurité des stratégies d'authent
 [🛠️ Mise en place du projet](#-mise-en-place-du-projet)  
 [1. Forker le projet](#1-forker-le-projet)  
 [2. Installer les dépendances](#2-installer-les-dépendances)  
-[3. Démarrer le projet](#3-démarrer-le-projet)  
+[3. Lancer le projet](#3-lancer-le-projet)  
 [4. Création de la base de données](#4-création-de-la-base-de-données)  
 [5. Configurer le fichier .env](#5-configurer-le-fichier-env)  
 [6. Créer votre première migration Prisma](#6-créer-votre-première-migration-prisma)  
@@ -37,7 +37,7 @@ Installez les dépendances nécessaires avec npm ou yarn :
 npm install
 ```
 
-### 3. Démarrer le projet
+### 3. Lancer le projet
 
 Une fois les dépendances installées, vous serez en mesure de lancez le projet avec la commande suivante :
 
@@ -120,11 +120,14 @@ npx prisma db seed
 
 ### 7. Lancer Prisma Studio
 
-Accedez à prisma studio via [http://localhost:5555/](http://localhost:5555/)
+Exécutez la commande suivante pour lancer Prisma Studio
 
 ```bash
 npx prisma studio
 ```
+
+Accedez à prisma studio via [http://localhost:5555/](http://localhost:5555/)
+
 
 # 📄 TPs
 
