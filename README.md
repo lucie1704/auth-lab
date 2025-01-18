@@ -118,10 +118,9 @@ On peut ensuite charger les seeders
 npx prisma db seed
 ```
 
-Accedez à prisma studio via [http://localhost:5555/](http://localhost:5555/)
-### 6. Lancer Prisma Studio
+### 7. Lancer Prisma Studio
 
-Pour explorer et modifier votre base de données en local, démarrez Prisma Studio :
+Accedez à prisma studio via [http://localhost:5555/](http://localhost:5555/)
 
 ```bash
 npx prisma studio
