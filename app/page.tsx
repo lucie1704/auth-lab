@@ -11,8 +11,8 @@ export default function Home() {
           <p className="mt-4 text-lg text-gray-600">
             Ce projet a pour but de vous présenter les 3 systèmes
             d'authentifications vus en cours et comment les implémenter dans ce
-            projet POC (proof of concept). Retrouvez chaque énoncé de TP via les
-            pages accessibles ci-dessus.
+            projet. Retrouvez chaque énoncé de TP via les pages accessibles
+            ci-dessus.
           </p>
         </div>
       </div>
