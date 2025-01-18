@@ -21,7 +21,7 @@ Ce projet contient les 3 TPs du cours **"La sécurité des stratégies d'authent
 
 Forkez ce dépôt GitHub pour vous créer une copie sur votre compte GitHub  
 ![image](https://github.com/user-attachments/assets/3bee487e-f515-478f-9464-33ab7f975979)
-Accéder à ce dépôt https://github.com/nom-d-utilisateur/auth-lab.git  
+Accéder à votre dépôt qui devrait ce nommer quelque chose comme https://github.com/nom-d-utilisateur/auth-lab.git  
 Cloner le dépôt et placer vous dans dans le dossier
 
 ```bash
