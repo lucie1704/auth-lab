@@ -45,9 +45,9 @@ Une fois les dépendances installées, vous serez en mesure de lancez le projet 
 npm run dev
 ```
 
-Accédez au projet dans votre navigateur à l'adresse suivante : `http://localhost:3000`
+Accédez au projet dans votre navigateur à l'adresse suivante : [http://localhost:3000](http://localhost:3000)
 
-### 3. Création de la base de données
+### 4. Création de la base de données
 
 Si vous avez déjà PostgreSQL installé vérifiez que PostgreSQL est bien installé et en fonctionnement avec la commande suivante :
 
@@ -93,7 +93,7 @@ CREATE DATABASE db_name;
 \q
 ```
 
-### 4. Configurer le fichier .env
+### 5. Configurer le fichier .env
 
 Créez un fichier .env à la racine du projet en vous basant sur le fichier exemple **.env.example**. Renseignez les valeurs **DATABASE_URL** et **NEXTAUTH_SECRET** :
 
@@ -102,7 +102,7 @@ DATABASE_URL=postgresql://user:password@localhost:5432/db_name
 NEXTAUTH_SECRET=un_secret_securisé
 ```
 
-### 5. Créer votre première migration Prisma
+### 6. Créer votre première migration Prisma
 
 Utilisez Prisma pour initialiser votre base de données et créer la première migration :
 
@@ -110,8 +110,15 @@ Utilisez Prisma pour initialiser votre base de données et créer la première m
 npx prisma migrate dev --name init
 ```
 
-Cela synchronise le schéma Prisma avec la base de données et crée les tables nécessaires pour le projet.
+Cela synchronise le schéma Prisma avec la base de données et crée les tables nécessaires pour le projet. 
 
+On peut ensuite charger les seeders
+
+```bash
+npx prisma db seed
+```
+
+Accedez à prisma studio via [http://localhost:5555/](http://localhost:5555/)
 ### 6. Lancer Prisma Studio
 
 Pour explorer et modifier votre base de données en local, démarrez Prisma Studio :
