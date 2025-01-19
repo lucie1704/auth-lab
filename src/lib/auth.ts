@@ -18,19 +18,26 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      authorization: {
+        params: { scope: 'openid profile email' },
+      },
     }),
   ],
   callbacks: {
     async jwt({
       token,
       account,
+      profile,
     }: {
       token: ExtendedJWT;
       account?: Account | null;
+      profile?: any;
     }) {
       if (account?.access_token) {
         token.accessToken = account.access_token;
+        token.provider = account.provider;
       }
+
       return token;
     },
 
@@ -44,6 +51,11 @@ export const authOptions = {
       if (token?.accessToken) {
         session.accessToken = token.accessToken;
       }
+
+      if (token?.provider) {
+        session.provider = token.provider;
+      }
+
       return session;
     },
   },

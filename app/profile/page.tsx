@@ -3,7 +3,7 @@
 import { ExtendedSession } from '@/src/lib/types/next-auth';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 export default function Profile() {
   const { data: session } = useSession() as { data: ExtendedSession };
@@ -23,6 +23,10 @@ export default function Profile() {
     };
 
     const fetchGithubUser = async () => {
+      if (session?.provider !== 'github') {
+        return;
+      }
+
       try {
         const user = await fetch('https://api.github.com/user', { headers });
         const userData = await user.json();
@@ -55,10 +59,9 @@ export default function Profile() {
         console.error('Error fetching repos', error);
       }
 
+      fetchRepos();
       setLoading(false);
     };
-
-    fetchRepos();
   }, [githubUsername, session]);
 
   return (
@@ -77,31 +80,43 @@ export default function Profile() {
         </div>
 
         {/* GITHUB LAYOUT */}
-        <div className="p-6">
-          {loading ? (
-            <p>Chargement du profil GitHub et des repositories ...</p>
-          ) : repos.length === 0 ? (
-            <p>Erreur au chargement du profil GitHub</p>
-          ) : (
-            <>
-              <div className="flex items-center">
-                <FaGithub className="mr-2" />
-                <p>Vous êtes connecté via GitHub</p>
-              </div>
+        {session?.provider === 'github' && (
+          <>
+            {loading ? (
+              <p>Chargement du profil GitHub et des repositories ...</p>
+            ) : (
+              <div className="p-6">
+                <div className="flex items-center">
+                  <FaGithub className="mr-2" />
+                  <p>Vous êtes connecté via GitHub</p>
+                </div>
 
-              <h3 className="text-lg font-semibold mt-4">
-                {githubUsername ?? ''}'s Repositories
-              </h3>
-              <ul className="mt-4 space-y-2">
-                {repos.map(repo => (
-                  <li key={repo.id} className="text-gray-700">
-                    {repo.name}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+                <h3 className="text-lg font-semibold mt-4">
+                  {githubUsername ?? ''}'s Repositories
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {repos.map(repo => (
+                    <li key={repo.id} className="text-gray-700">
+                      {repo.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* GOOGLE LAYOUT */}
+        {session?.provider === 'google' && (
+          <>
+            <div className="p-6">
+              <div className="flex items-center">
+                <FaGoogle className="mr-2" />
+                <p>Vous êtes connecté via Google</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
