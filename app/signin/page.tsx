@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { FaGoogle, FaGithub, FaTwitter } from 'react-icons/fa';
 
 export default function Signin() {
   const [email, setEmail] = useState();
@@ -21,6 +23,7 @@ export default function Signin() {
           Se connecter
         </h1>
 
+        {/* Login form with credentials */}
         <form onSubmit={handleCredentialsSubmit} className="space-y-4">
           <div>
             <label htmlFor="username" className="block text-sm font-medium">
@@ -61,6 +64,38 @@ export default function Signin() {
             Se connecter
           </button>
         </form>
+
+        {/* Divider */}
+        <div className="my-4 flex items-center">
+          <div className="flex-grow border-t border-gray-300"></div>
+          <span className="mx-2 text-gray-500">ou</span>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        {/* Login action with Providers */}
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => signIn('github')}
+            className="w-full py-2 px-4 mb-2 bg-gray-800 text-white rounded-md hover:bg-gray-900 flex justify-center items-center"
+          >
+            <FaGithub className="mr-2" />
+            Se connecter avec GitHub
+          </button>
+          <button
+            onClick={() => signIn('google')}
+            className="w-full py-2 px-4 mb-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex justify-center items-center"
+          >
+            <FaGoogle className="mr-2" />
+            Se connecter avec Google
+          </button>
+          <button
+            onClick={() => signIn('twitter')}
+            className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 flex justify-center items-center"
+          >
+            <FaTwitter className="mr-2" />
+            Se connecter avec Twitter
+          </button>
+        </div>
       </div>
     </div>
   );
