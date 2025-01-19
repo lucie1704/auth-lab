@@ -12,15 +12,15 @@ export default function Profile() {
   const [githubUsername, setGithubUsername] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const headers = {
+    Authorization: `Bearer ${session?.accessToken}`,
+  };
+
   useEffect(() => {
     if (!session || !session.accessToken) {
       setLoading(false);
       return;
     }
-
-    const headers = {
-      Authorization: `Bearer ${session.accessToken}`,
-    };
 
     const fetchGithubUser = async () => {
       if (session?.provider !== 'github') {
@@ -42,10 +42,6 @@ export default function Profile() {
 
   useEffect(() => {
     if (!githubUsername) return;
-
-    const headers = {
-      Authorization: `Bearer ${session?.accessToken}`,
-    };
 
     const fetchRepos = async () => {
       try {
