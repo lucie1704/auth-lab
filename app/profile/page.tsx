@@ -18,40 +18,48 @@ export default function Profile() {
       return;
     }
 
+    const headers = {
+      Authorization: `Bearer ${session.accessToken}`,
+    };
+
+    const fetchGithubUser = async () => {
+      try {
+        const user = await fetch('https://api.github.com/user', { headers });
+        const userData = await user.json();
+        setGithubUsername(userData.login);
+      } catch (error) {
+        console.error('Error fetching user', error);
+        setLoading(false);
+      }
+    };
+
+    fetchGithubUser();
+  }, [session]);
+
+  useEffect(() => {
+    if (!githubUsername) return;
+
+    const headers = {
+      Authorization: `Bearer ${session?.accessToken}`,
+    };
+
     const fetchRepos = async () => {
       try {
-        // 1. Get the GitHub username
-        const res = await fetch('https://api.github.com/user', {
-          headers: {
-            Authorization: `Bearer ${session.accessToken}`,
-          },
-        });
-        const userData = await res.json();
-        setGithubUsername(userData.login);
-
-        const repoRes = await fetch(
-          `https://api.github.com/users/${userData.login}/repos`,
-          {
-            headers: {
-              Authorization: `Bearer ${session.accessToken}`,
-            },
-          }
+        const repos = await fetch(
+          `https://api.github.com/users/${githubUsername}/repos`,
+          { headers }
         );
-        const reposData = await repoRes.json();
+        const reposData = await repos.json();
         setRepos(reposData);
       } catch (error) {
-        console.error('Error fetching repos:', error);
+        console.error('Error fetching repos', error);
       }
 
       setLoading(false);
     };
 
     fetchRepos();
-  }, [session]);
-
-  if (!session) {
-    return <div>You are not signed in.</div>;
-  }
+  }, [githubUsername, session]);
 
   return (
     <div className="flex justify-center items-center my-16">
@@ -70,26 +78,28 @@ export default function Profile() {
 
         {/* GITHUB LAYOUT */}
         <div className="p-6">
-          <div className="flex items-center">
-            <FaGithub className="mr-2" />
-            <p>Vous êtes connecté via GitHub</p>
-          </div>
-
-          <h3 className="text-lg font-semibold mt-4">
-            {githubUsername ?? ''}'s Repositories
-          </h3>
           {loading ? (
-            <p>Loading repositories...</p>
+            <p>Chargement du profil GitHub et des repositories ...</p>
           ) : repos.length === 0 ? (
-            <p>No repositories found.</p>
+            <p>Erreur au chargement du profil GitHub</p>
           ) : (
-            <ul className="mt-4 space-y-2">
-              {repos.map(repo => (
-                <li key={repo.id} className="text-gray-700">
-                  {repo.name}
-                </li>
-              ))}
-            </ul>
+            <>
+              <div className="flex items-center">
+                <FaGithub className="mr-2" />
+                <p>Vous êtes connecté via GitHub</p>
+              </div>
+
+              <h3 className="text-lg font-semibold mt-4">
+                {githubUsername ?? ''}'s Repositories
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {repos.map(repo => (
+                  <li key={repo.id} className="text-gray-700">
+                    {repo.name}
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </div>
       </div>
