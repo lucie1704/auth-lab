@@ -1,7 +1,9 @@
 import { prisma } from '@/src/lib/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
+import { Account } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import { ExtendedJWT, ExtendedSession } from './types/next-auth';
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -19,21 +21,30 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({
+      token,
+      account,
+    }: {
+      token: ExtendedJWT;
+      account?: Account | null;
+    }) {
       if (account?.access_token) {
-        console.log('account', account);
         token.accessToken = account.access_token;
       }
       return token;
     },
-    async session({ session, token }) {
+
+    async session({
+      session,
+      token,
+    }: {
+      session: ExtendedSession;
+      token: ExtendedJWT;
+    }) {
       if (token?.accessToken) {
         session.accessToken = token.accessToken;
       }
       return session;
-    },
-    async redirect({ url, baseUrl }) {
-      return baseUrl + '/profile';
     },
   },
   pages: {

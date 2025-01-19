@@ -75,21 +75,21 @@ export default function Signin() {
         {/* Login action with Providers */}
         <div className="mt-4 text-center">
           <button
-            onClick={() => signIn('github')}
+            onClick={() => signIn('github', { callbackUrl: '/profile' })}
             className="w-full py-2 px-4 mb-2 bg-gray-800 text-white rounded-md hover:bg-gray-900 flex justify-center items-center"
           >
             <FaGithub className="mr-2" />
             Se connecter avec GitHub
           </button>
           <button
-            onClick={() => signIn('google')}
+            onClick={() => signIn('google', { callbackUrl: '/profile' })}
             className="w-full py-2 px-4 mb-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex justify-center items-center"
           >
             <FaGoogle className="mr-2" />
             Se connecter avec Google
           </button>
           <button
-            onClick={() => signIn('twitter')}
+            onClick={() => signIn('twitter', { callbackUrl: '/profile' })}
             className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 flex justify-center items-center"
           >
             <FaTwitter className="mr-2" />
