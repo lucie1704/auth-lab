@@ -55,9 +55,10 @@ export default function Profile() {
         console.error('Error fetching repos', error);
       }
 
-      fetchRepos();
       setLoading(false);
     };
+
+    fetchRepos();
   }, [githubUsername, session]);
 
   return (
